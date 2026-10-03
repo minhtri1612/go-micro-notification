@@ -48,7 +48,7 @@ func (nc *NotificationController) CreateNotification(c *gin.Context) {
 
 // GetNotifications returns all notifications
 func (nc *NotificationController) GetNotifications(c *gin.Context) {
-	rows, err := nc.DB.Query("SELECT id, order_id, customer_id, message, status, created_at, delivered_at FROM notifications")
+	rows, err := nc.DB.Query("SELECT id, order_id, customer_id, message, status, created_at, delivered_at FROM notifications ORDER BY id DESC")
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
